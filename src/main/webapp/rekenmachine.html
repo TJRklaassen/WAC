@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<title>JavaScript Rekenmachine</title>
+<script src="script.js" defer></script>
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+<body>
+	<div id="frame">
+		<div id="display">0</div>
+
+		<button id="btn_7" onclick="insert(7)">7</button>
+		<button id="btn_8" onclick="insert(8)">8</button>
+		<button id="btn_9" onclick="insert(9)">9</button>
+		<button id="btn_div" onclick="operate('/')">/</button>
+
+		<button id="btn_4" onclick="insert(4)">4</button>
+		<button id="btn_5" onclick="insert(5)">5</button>
+		<button id="btn_6" onclick="insert(6)">6</button>
+		<button id="btn_prod" onclick="operate('*')">*</button>
+
+		<button id="btn_1" onclick="insert(1)">1</button>
+		<button id="btn_2" onclick="insert(2)">2</button>
+		<button id="btn_3" onclick="insert(3)">3</button>
+		<button id="btn_min" onclick="operate('-')">-</button>
+
+		<button id="btn_clear" onclick="clearDisplay()">C</button>
+		<button id="btn_0" onclick="insert(0)">0</button>
+		<button id="btn_eq" onclick="return_value()">=</button>
+		<button id="btn_plus" onclick="operate('+')">+</button>
+	</div>
+</body>
+</html>
