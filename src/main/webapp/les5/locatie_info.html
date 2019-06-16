@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Locatie en Weer info</title>
+<script src="script.js" defer></script>
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+<body>
+	<div id="frame">
+		<div id="myLocation">
+			<div id="tab"><h3>Mijn locatie</h3></div>
+			<table>
+				<tr>
+					<td>Landcode:</td>
+					<td id="landcode"></td>
+				</tr>
+				<tr>
+					<td>Land:</td>
+					<td id="land"></td>
+				</tr>
+				<tr>
+					<td>Regio:</td>
+					<td id="regio"></td>
+				</tr>
+				<tr id="locatie">
+					<td>Stad:</td>
+					<td id="stad"></td>
+				</tr>
+				<tr>
+					<td>Postcode:</td>
+					<td id="postcode"></td>
+				</tr>
+				<tr>
+					<td>Latitude:</td>
+					<td id="latitude"></td>
+				</tr>
+				<tr>
+					<td>Longitude:</td>
+					<td id="longitude"></td>
+				</tr>
+				<tr>
+					<td>IP:</td>
+					<td id="ip"></td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="weatherInfo">
+			<div id="tab"><h3>Het weer in <span id="stadHeader"></span></h3></div>
+			<table>
+				<tr>
+					<td>Temperatuur:</td>
+					<td id="temperatuur"></td>
+				</tr>
+				<tr>
+					<td>Luchtvochtigheid:</td>
+					<td id="luchtvochtigheid"></td>
+				</tr>
+				<tr>
+					<td>Windsnelheid:</td>
+					<td id="windsnelheid"></td>
+				</tr>
+				<tr>
+					<td>Windrichting:</td>
+					<td id="windrichting"></td>
+				</tr>
+				<tr>
+					<td>Zonsopgang:</td>
+					<td id="zonsopgang"></td>
+				</tr>
+				<tr>
+					<td>Zonsondergang:</td>
+					<td id="zonsondergang"></td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="countryList">
+			<div id="tab"><h3>Beschikbare vakantiebestemmingen</h3></div>
+			<table id="bestemmingen">
+				<tr>
+					<th>Land</th>
+					<th>Hoofdstad</th>
+					<th>Regio</th>
+					<th>Oppervlakte</th>
+					<th>Inwoners</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

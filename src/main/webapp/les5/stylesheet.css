@@ -1,0 +1,85 @@
+body {
+	background-color: lightgrey;
+}
+
+#frame {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	padding: 0;
+}
+
+div {
+	margin-bottom: 1em;
+	padding-top: 0.3em;
+	padding-left: 0.3em;
+}
+
+div#tab {
+	background-color: grey;
+	color: white;
+	font-weight: bold;
+	padding: 0.3em;
+}
+
+th {
+	text-align: left;
+}
+
+td {
+	width: 10em;
+}
+
+h3 {
+	padding: 0;
+	margin: 0;
+}
+
+button {
+	height: 3.5em;
+	margin-bottom: 0.3em;
+	width: 3.5em;
+}
+
+#myLocation {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+#weatherInfo {
+	grid-column: 2;
+	grid-row: 1;
+}
+
+#countryList {
+	grid-column: 1/3;
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
+@media screen and (max-width: 700px) {
+	#myLocation {
+		grid-column: 1/3;
+		grid-row: 1;
+	}
+
+	#weatherInfo {
+		grid-column: 1/3;
+		grid-row: 2;
+	}
+}
+
+#bestemmingen {
+	background-color: grey;
+	table-layout: auto;
+	width: 100%;
+}
+
+.bestemming:hover {
+	background-color: white;
+	cursor: pointer;
+}
+
+#locatie:hover {
+	color: white;
+	cursor: pointer;
+}

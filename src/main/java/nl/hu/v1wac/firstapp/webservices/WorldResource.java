@@ -1,5 +1,7 @@
 package nl.hu.v1wac.firstapp.webservices;
 
+import java.sql.SQLException;
+
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -18,7 +20,7 @@ public class WorldResource {
 	
 	@GET
 	@Produces("application/json")
-	public String getCountries() {
+	public String getCountries() throws SQLException {
 		WorldService service = ServiceProvider.getWorldService();
 		JsonArrayBuilder jab = Json.createArrayBuilder();
 		
@@ -47,7 +49,7 @@ public class WorldResource {
 	@GET
 	@Path("{code}")
 	@Produces("application/json")
-	public String getCountriesByCode(@PathParam("code") String code) {
+	public String getCountriesByCode(@PathParam("code") String code) throws SQLException {
 		WorldService service = ServiceProvider.getWorldService();
 		JsonArrayBuilder jab = Json.createArrayBuilder();
 		
@@ -75,7 +77,7 @@ public class WorldResource {
 	@GET
 	@Path("/largestsurfaces")
 	@Produces("application/json")
-	public String getCountriesBySurfaceSize() {
+	public String getCountriesBySurfaceSize() throws SQLException {
 		WorldService service = ServiceProvider.getWorldService();
 		JsonArrayBuilder jab = Json.createArrayBuilder();
 		
@@ -104,7 +106,7 @@ public class WorldResource {
 	@GET
 	@Path("/largestpopulations")
 	@Produces("application/json")
-	public String getCountriesByPopulationSize() {
+	public String getCountriesByPopulationSize() throws SQLException {
 		WorldService service = ServiceProvider.getWorldService();
 		JsonArrayBuilder jab = Json.createArrayBuilder();
 		
