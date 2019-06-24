@@ -13,4 +13,7 @@ public interface CountryDao {
 	public List<Country> find10LargestSurfaces() throws SQLException;
 	public boolean update(Country country) throws SQLException;
 	public boolean delete(Country country) throws SQLException;
+	boolean update(String code, String nm, String cap, String reg, int sur, int pop) throws SQLException;
+	boolean delete(String code) throws SQLException;
+	boolean save(String code, String nm, String cap, String reg, int sur, int pop) throws SQLException;
 }

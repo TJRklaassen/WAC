@@ -93,74 +93,158 @@ public class CountryPostgresDaoImpl extends PostgresBaseDao implements CountryDa
 
 	@Override
 	public boolean save(Country country) throws SQLException {
-		Connection conn = getConnection();
-		
-		String queryText = "INSERT INTO country (code, iso3, name, capital, continent, "
-				+ "region, surfacearea, population, governmentform, latitude, longitude)\r\n" + 
-				"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		
-		PreparedStatement pstmt = conn.prepareStatement(queryText);
-		
-		pstmt.setString(1, country.getCode());
-		pstmt.setString(2, country.getIso3());
-		pstmt.setString(3, country.getName());
-		pstmt.setString(4, country.getCapital());
-		pstmt.setString(5, country.getContinent());
-		pstmt.setString(6, country.getRegion());
-		pstmt.setDouble(7, country.getSurface());
-		pstmt.setInt(8, country.getPopulation());
-		pstmt.setString(9, country.getGovernment());
-		pstmt.setDouble(10, country.getLatitude());
-		pstmt.setDouble(11, country.getLongitude());
-		pstmt.executeUpdate();
-		
-		pstmt.close();
-		conn.close();
-		
-		return true;
+		try {
+			Connection conn = getConnection();
+			
+			String queryText = "INSERT INTO country (code, iso3, name, capital, continent, "
+					+ "region, surfacearea, population, governmentform, latitude, longitude)\r\n" + 
+					"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			
+			PreparedStatement pstmt = conn.prepareStatement(queryText);
+			
+			pstmt.setString(1, country.getCode());
+			pstmt.setString(2, country.getIso3());
+			pstmt.setString(3, country.getName());
+			pstmt.setString(4, country.getCapital());
+			pstmt.setString(5, country.getContinent());
+			pstmt.setString(6, country.getRegion());
+			pstmt.setDouble(7, country.getSurface());
+			pstmt.setInt(8, country.getPopulation());
+			pstmt.setString(9, country.getGovernment());
+			pstmt.setDouble(10, country.getLatitude());
+			pstmt.setDouble(11, country.getLongitude());
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+			
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean save(String code, String nm, String cap, String reg, int sur, int pop) throws SQLException {
+		try {
+			Connection conn = getConnection();
+			
+			String queryText = "INSERT INTO country (code, name, capital, region, surfacearea, population)\r\n" + 
+					"VALUES (?, ?, ?, ?, ?, ?)";
+			
+			PreparedStatement pstmt = conn.prepareStatement(queryText);
+			pstmt.setString(1, code);
+			pstmt.setString(2, nm);
+			pstmt.setString(3, cap);
+			pstmt.setString(4, reg);
+			pstmt.setInt(5, sur);
+			pstmt.setInt(6, pop);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+			
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
 	@Override
 	public boolean update(Country country) throws SQLException {
-		Connection conn = getConnection();
-		
-		String queryText = "UPDATE country SET iso3=?, name=?, capital=?, continent=?, "
-				+ "region=?, surfacearea=?, population=?, governmentform=?, latitude=?, longitude=?\r\n" + 
-				"WHERE code=?";
-		
-		PreparedStatement pstmt = conn.prepareStatement(queryText);
-		
-		pstmt.setString(1, country.getIso3());
-		pstmt.setString(2, country.getName());
-		pstmt.setString(3, country.getCapital());
-		pstmt.setString(4, country.getContinent());
-		pstmt.setString(5, country.getRegion());
-		pstmt.setDouble(6, country.getSurface());
-		pstmt.setInt(7, country.getPopulation());
-		pstmt.setString(8, country.getGovernment());
-		pstmt.setDouble(9, country.getLatitude());
-		pstmt.setDouble(10, country.getLongitude());
-		pstmt.setString(11, country.getCode());
-		pstmt.executeUpdate();
-		
-		pstmt.close();
-		conn.close();
-		
-		return true;
+		try {
+			Connection conn = getConnection();
+			
+			String queryText = "UPDATE country SET iso3=?, name=?, capital=?, continent=?, "
+					+ "region=?, surfacearea=?, population=?, governmentform=?, latitude=?, longitude=?\r\n" + 
+					"WHERE code=?";
+			
+			PreparedStatement pstmt = conn.prepareStatement(queryText);
+			
+			pstmt.setString(1, country.getIso3());
+			pstmt.setString(2, country.getName());
+			pstmt.setString(3, country.getCapital());
+			pstmt.setString(4, country.getContinent());
+			pstmt.setString(5, country.getRegion());
+			pstmt.setDouble(6, country.getSurface());
+			pstmt.setInt(7, country.getPopulation());
+			pstmt.setString(8, country.getGovernment());
+			pstmt.setDouble(9, country.getLatitude());
+			pstmt.setDouble(10, country.getLongitude());
+			pstmt.setString(11, country.getCode());
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+			
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean update(String code, String nm, String cap, String reg, int sur, int pop) throws SQLException {
+		try {
+			Connection conn = getConnection();
+			
+			String queryText = "UPDATE country SET name=?, capital=?, region=?, surfacearea=?, population=?\r\n" + 
+					"WHERE code=?";
+			
+			PreparedStatement pstmt = conn.prepareStatement(queryText);
+			
+			pstmt.setString(1, nm);
+			pstmt.setString(2, cap);
+			pstmt.setString(3, reg);
+			pstmt.setDouble(4, sur);
+			pstmt.setInt(5, pop);
+			pstmt.setString(6, code);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+			
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	@Override
 	public boolean delete(Country country) throws SQLException {
-		Connection conn = getConnection();
-		
-		String queryText = "DELETE FROM country WHERE code=?";
-		PreparedStatement pstmt = conn.prepareStatement(queryText);
-		pstmt.setString(1, country.getCode());
-		pstmt.executeUpdate();
-		
-		pstmt.close();
-		conn.close();
-		
-		return true;
+		try {
+			Connection conn = getConnection();
+			
+			String queryText = "DELETE FROM country WHERE code=?";
+			PreparedStatement pstmt = conn.prepareStatement(queryText);
+			pstmt.setString(1, country.getCode());
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+			
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	} 
+	
+	@Override
+	public boolean delete(String code) throws SQLException {
+		try {
+			Connection conn = getConnection();
+			
+			String queryText = "DELETE FROM country WHERE code=?";
+			PreparedStatement pstmt = conn.prepareStatement(queryText);
+			pstmt.setString(1, code);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+			
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	} 
 }

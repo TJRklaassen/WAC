@@ -1,9 +1,6 @@
 package nl.hu.v1wac.firstapp.model;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import nl.hu.v1wac.firstapp.persistence.CountryPostgresDaoImpl;
@@ -25,5 +22,25 @@ public class WorldService {
 	
 	public Country getCountryByCode(String code) throws SQLException {
 		return countryDao.findByCode(code);
+	}
+	
+	public boolean createCountry(String code, String name, String capital, String region, int surface, int population) throws SQLException {
+		return countryDao.save(code, name, capital, region, surface, population);
+	}
+	
+	public boolean createCountry(Country country) throws SQLException {
+		return countryDao.save(country);
+	}
+	
+	public boolean updateCountry(Country country) throws SQLException {
+		return countryDao.update(country);
+	}
+
+	public boolean updateCountry(String code, String name, String capital, String region, int surface, int population) throws SQLException {
+		return countryDao.update(code, name, capital, region, surface, population);
+	}
+	
+	public boolean deleteCountry(String code) throws SQLException {
+		return countryDao.delete(code);
 	}
 }

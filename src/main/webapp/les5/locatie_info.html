@@ -6,6 +6,13 @@
 <link href="stylesheet.css" rel="stylesheet" type="text/css">
 <body>
 	<div id="frame">
+		<div id="loginContainer">
+			<form id="POSTlogin">
+				<p><input type="button" id="login" value="Inloggen"></p>
+				<p>Wachtwoord: <input type="password" name="password" /></p>
+				<p>Gebruikersnaam: <input type="text" name="username" /></p>
+			</form>
+		</div>
 		<div id="myLocation">
 			<div id="tab"><h3>Mijn locatie</h3></div>
 			<table>
@@ -73,9 +80,32 @@
 				</tr>
 			</table>
 		</div>
-
+		
+		<div id="countryTab"><h3>Beschikbare vakantiebestemmingen</h3></div>
+		<div id="add">
+			<h1>Voeg een nieuw land toe:</h1>
+			<form id="POSTcountry">
+				<p>Landcode:<input type="text" name="code" /></p><br>
+				<p>Land:<input type="text" name="name" /></p><br>
+				<p>Hoofdstad:<input type="text" name="capital" /></p><br>
+				<p>Regio:<input type="text" name="region" /></p><br>
+				<p>Oppervlakte:<input type="number" name="surface" /></p><br>
+				<p>Inwoners:<input type="number" name="population" /></p><br>
+				<input id="post" type="button" value="Voeg toe" />
+			</form>
+		</div>
+		<div id="edit">
+			<h1>Wijzig gegevens van <span id="landEdit"></span>:</h1>
+			<form id="PUTcountry">
+				<p>Land:<input type="text" name="name" /></p><br>
+				<p>Hoofdstad:<input type="text" name="capital" /></p><br>
+				<p>Regio:<input type="text" name="region" /></p><br>
+				<p>Oppervlakte:<input type="number" name="surface" /></p><br>
+				<p>Inwoners:<input type="number" name="population" /></p><br>
+				<p id="buttonContainer"></p>
+			</form>
+		</div>
 		<div id="countryList">
-			<div id="tab"><h3>Beschikbare vakantiebestemmingen</h3></div>
 			<table id="bestemmingen">
 				<tr>
 					<th>Land</th>

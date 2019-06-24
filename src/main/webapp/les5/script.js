@@ -18,8 +18,25 @@ function initPage(){
 	showWeather(json_obj["latitude"], json_obj["longitude"], json_obj["city"]);
 	loadCountries();
 	
+	document.querySelector("#login").addEventListener("click", login);
+	
 	document.getElementById("locatie").addEventListener("click", function(){
 		showWeather(json_obj["latitude"], json_obj["longitude"], json_obj["city"]);
+	})
+	
+	document.querySelector("#post").addEventListener('click', function(){
+		var formData = new FormData(document.querySelector("#POSTcountry"));
+		var encData = new URLSearchParams(formData.entries());
+		
+		fetch("../restservices/countries", { method: 'POST', body: encData, headers: {
+			'Authorization': 'Bearer ' + window.sessionStorage.getItem("sessionToken")
+		}})
+			.then(response => Promise.all([response.status, response.json()]))
+			.then(function([status, myJson]) { 
+				if (status == 200) console.log(myJson.success); 
+				else console.log(myJson.error);
+			})
+			setTimeout(function(){ loadCountries(); }, 500);
 	})
 }
 
@@ -93,26 +110,94 @@ function loadCountries(){
 		.then(function(myJson) {
 			var table = document.getElementById("bestemmingen");
 			
+			for(var i = table.rows.length - 1; i > 0; i--){
+				table.deleteRow(i);
+			}
+			
 			for(var i=0; i < myJson.length; i++){
-				var row = table.insertRow(i+1);
-				
 				(function (i) {
-					var lat = myJson[i]["lat"];
-					var lng = myJson[i]["lng"];
+					var row = table.insertRow(i+1);
+					var lat = myJson[i]["latitude"];
+					var lng = myJson[i]["longitude"];
 					var city = myJson[i]["capital"];
 					
 					row.addEventListener('click', function(){
 						showWeather(lat, lng, city);
 					});
-				})(i);
 				
-				row.className = 'bestemming';
-				row.insertCell(0).innerHTML = myJson[i]["name"];
-				row.insertCell(1).innerHTML = myJson[i]["capital"];
-				row.insertCell(2).innerHTML = myJson[i]["region"];
-				row.insertCell(3).innerHTML = myJson[i]["surface"];
-				row.insertCell(4).innerHTML = myJson[i]["population"];
+					row.className = 'bestemming';
+
+					row.insertCell(0).innerHTML = myJson[i]["name"];
+					row.insertCell(1).innerHTML = myJson[i]["capital"];
+					row.insertCell(2).innerHTML = myJson[i]["region"];
+					row.insertCell(3).innerHTML = myJson[i]["surface"];
+					row.insertCell(4).innerHTML = myJson[i]["population"];
+					var rowCell = row.insertCell(5);
+				
+					var btnEdit = document.createElement("BUTTON");
+					
+					btnEdit.innerHTML = "Wijzig";
+					btnEdit.className = "btn";
+					rowCell.appendChild(btnEdit);
+				
+					btnEdit.addEventListener('click', function(){
+						document.getElementById("landEdit").innerHTML = myJson[i]["name"];
+						document.getElementById("edit").style.display = "block";
+						window.location.hash = "#edit";
+						
+						var button = document.createElement("INPUT");
+						button.setAttribute("type", "button");
+						button.setAttribute("value", "Bevestig");
+						
+						document.getElementById("buttonContainer").innerHTML = "";
+						document.getElementById("buttonContainer").appendChild(button);
+						button.addEventListener('click', function() {
+							var formData = new FormData(document.querySelector("#PUTcountry"));
+							var encData = new URLSearchParams(formData.entries());
+							
+							fetch("../restservices/countries/"+myJson[i]["code"], { method: 'PUT', body: encData, headers: {
+								'Authorization': 'Bearer ' + window.sessionStorage.getItem("sessionToken")
+							}})
+								.then(response => Promise.all([response.status, response.json()]))
+								.then(function([status, myJson]) { 
+									if (status == 200) console.log(myJson.success); 
+									else console.log(myJson.error);
+								})
+							setTimeout(function(){ loadCountries(); }, 500);
+						});
+					});
+					
+					var btnDelete = document.createElement("BUTTON");
+					btnDelete.innerHTML = "Verwijder";
+					btnDelete.className = "btn";
+					rowCell.appendChild(btnDelete);
+					
+					btnDelete.addEventListener('click', function(){
+						fetch("../restservices/countries/"+myJson[i]["code"], { method: 'DELETE', headers: {
+							'Authorization': 'Bearer ' + window.sessionStorage.getItem("sessionToken")
+						}})
+							.then(function (response) {
+								if (response.ok) console.log("Country deleted!");
+								else if (response.status == 404) console.log("Country not found!");
+								else console.log("Can't delete country!")
+							})
+						setTimeout(function(){ loadCountries(); }, 500);
+					});
+				})(i);
 			}
 		});
+}
+
+function login(event) {
+	var formData = new FormData(document.querySelector("#POSTlogin"));
+	var encData = new URLSearchParams(formData.entries());
+	
+	fetch("../restservices/authentication", { method: 'POST', body: encData })
+		.then(function(response) {
+			if(response.ok) return response.json();
+			else throw "Onjuiste gebruikersnaam of wachtwoord";
+		})
+		.then(myJson => window.sessionStorage.setItem("sessionToken", myJson.JWT))
+		.catch(error => console.log(error));
 }
 
