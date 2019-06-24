@@ -105,7 +105,7 @@ function showWeather(latitude, longitude, city){
 }
 
 function loadCountries(){
-	fetch('http://localhost:8080/firstapp/restservices/countries')
+	fetch('../restservices/countries')
 		.then(response => response.json())
 		.then(function(myJson) {
 			var table = document.getElementById("bestemmingen");
