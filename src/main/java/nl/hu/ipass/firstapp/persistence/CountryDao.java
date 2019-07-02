@@ -1,9 +1,9 @@
-package nl.hu.v1wac.firstapp.persistence;
+package nl.hu.ipass.firstapp.persistence;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import nl.hu.v1wac.firstapp.model.Country;
+import nl.hu.ipass.firstapp.model.Country;
 
 public interface CountryDao {
 	public boolean save(Country country) throws SQLException;

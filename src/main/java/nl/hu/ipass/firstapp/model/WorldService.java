@@ -1,9 +1,9 @@
-package nl.hu.v1wac.firstapp.model;
+package nl.hu.ipass.firstapp.model;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import nl.hu.v1wac.firstapp.persistence.CountryPostgresDaoImpl;
+import nl.hu.ipass.firstapp.persistence.CountryPostgresDaoImpl;
 
 public class WorldService {
 	private CountryPostgresDaoImpl countryDao = new CountryPostgresDaoImpl();

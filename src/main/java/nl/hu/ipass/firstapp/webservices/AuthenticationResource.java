@@ -1,4 +1,4 @@
-package nl.hu.v1wac.firstapp.webservices;
+package nl.hu.ipass.firstapp.webservices;
 
 import java.security.Key;
 import java.sql.SQLException;
@@ -17,8 +17,8 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
-import nl.hu.v1wac.firstapp.persistence.UserDao;
-import nl.hu.v1wac.firstapp.persistence.UserPostgresDaoImpl;
+import nl.hu.ipass.firstapp.persistence.UserDao;
+import nl.hu.ipass.firstapp.persistence.UserPostgresDaoImpl;
 
 @Path("/authentication")
 public class AuthenticationResource {

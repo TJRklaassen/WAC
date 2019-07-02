@@ -1,4 +1,4 @@
-package nl.hu.v1wac.firstapp.webservices;
+package nl.hu.ipass.firstapp.webservices;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -16,9 +16,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import nl.hu.v1wac.firstapp.model.Country;
-import nl.hu.v1wac.firstapp.model.ServiceProvider;
-import nl.hu.v1wac.firstapp.model.WorldService;
+import nl.hu.ipass.firstapp.model.Country;
+import nl.hu.ipass.firstapp.model.ServiceProvider;
+import nl.hu.ipass.firstapp.model.WorldService;
 
 @Path("/countries")
 public class WorldResource {

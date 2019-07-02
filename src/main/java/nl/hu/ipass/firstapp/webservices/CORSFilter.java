@@ -1,4 +1,4 @@
-package nl.hu.v1wac.firstapp.webservices;
+package nl.hu.ipass.firstapp.webservices;
 
 import java.io.IOException;
 

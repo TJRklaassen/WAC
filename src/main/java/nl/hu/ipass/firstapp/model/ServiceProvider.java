@@ -1,4 +1,4 @@
-package nl.hu.v1wac.firstapp.model;
+package nl.hu.ipass.firstapp.model;
 
 public class ServiceProvider {
 	private static WorldService worldService = new WorldService();

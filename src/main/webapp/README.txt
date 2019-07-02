@@ -1,0 +1,1 @@
+Deze folder (WAC) is voor het vak Web Application Construction en is dus niet relevant voor het IPASS project.

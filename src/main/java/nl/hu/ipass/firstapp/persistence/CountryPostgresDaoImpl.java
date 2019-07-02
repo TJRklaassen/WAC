@@ -1,4 +1,4 @@
-package nl.hu.v1wac.firstapp.persistence;
+package nl.hu.ipass.firstapp.persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.hu.v1wac.firstapp.model.Country;
+import nl.hu.ipass.firstapp.model.Country;
 
 public class CountryPostgresDaoImpl extends PostgresBaseDao implements CountryDao {
 	
